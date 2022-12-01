@@ -1,5 +1,7 @@
 package com.shopping.productapi.DTO;
 
+import com.shopping.productapi.Model.Product;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -12,7 +14,7 @@ public class ProductDTO {
     @NotBlank
     private String descricao;
     @NotNull
-    private float preco;
+    private Float preco;
     @NotNull
     private CategoryDTO category;
    
@@ -65,6 +67,18 @@ public class ProductDTO {
 
     public void setCategory(CategoryDTO category) {
         this.category = category;
+    }
+
+    public static ProductDTO convert(Product product){
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setNome(product.getNome());
+        productDTO.setDescricao(product.getDescricao());
+        productDTO.setPreco(product.getPreco());
+        productDTO.setProductIdentifier(product.getProductIdentifier());
+        if (product.getCategory() != null){
+            productDTO.setCategory(CategoryDTO.convert(product.getCategory()));
+        }
+        return productDTO;    
     }
 
 }
