@@ -1,5 +1,7 @@
 package com.shopping.productapi.Model;
 
+import com.shopping.productapi.DTO.CategoryDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,5 +37,12 @@ public class Category {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public static Category convert(CategoryDTO categoryDTO){
+        Category category = new Category();
+        category.setId(categoryDTO.getId());
+        category.setNome(categoryDTO.getNome());
+        return category;
     }
 }
